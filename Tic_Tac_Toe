@@ -1,0 +1,162 @@
+# romancode
+Roman's main repository
+'''
+Name: Roman Tirabassi
+Date: 11/29/2022
+Description: Tic Tac Toe Game
+
+'''
+theBoard = [ ['1','2','3'],      
+            ['4', '5', '6'],            
+            ['7', '8', '9'] ]
+
+
+
+
+def printBoard():
+    print(theBoard[0][0] + '|' + theBoard[0][1] + '|' + theBoard[0][2])
+    print('-+-+-')
+    print(theBoard[1][0] + '|' + theBoard[1][1] + '|' + theBoard[1][2])
+    print('-+-+-')
+    print(theBoard[2][0] + '|' + theBoard[2][1] + '|' + theBoard[2][2])
+    
+    
+def checkLocation(move, turn):                  #check how you can win
+
+    if move == 1:
+        
+        theBoard[0][0] = turn
+        
+    elif move == 2:
+        
+        theBoard[0][1] = turn
+        
+    elif move == 3: 
+        
+        theBoard[0][2] = turn
+        
+    elif move == 4: 
+        
+        theBoard[1][0] = turn
+        
+    elif move == 5: 
+        
+        theBoard[1][1] = turn
+        
+    elif move == 6: 
+        
+        theBoard[1][2] = turn
+        
+    elif move == 7: 
+        
+        theBoard[2][0] = turn
+        
+    elif move == 8: 
+        
+        theBoard[2][1] = turn
+        
+    elif move == 9: 
+        
+        theBoard[2][2] = turn
+
+
+def checkWinner(turn): #determine the winner
+    
+    winner = False
+
+    
+    if theBoard[0][0] == turn and theBoard[0][1] == turn and theBoard[0][2] == turn: #top across
+        print(turn + " Wins!")
+        winner = True
+        
+    elif theBoard[1][0] == turn and theBoard[1][1] == turn and theBoard[1][2] == turn: #middle across
+        print(turn + " Wins!")
+        winner = True
+        
+    elif theBoard[2][0] == turn and theBoard[2][1] == turn and theBoard[2][2] == turn:  #bottom across
+        print(turn + " Wins!")
+        winner = True
+        
+    elif theBoard[0][0] == turn and theBoard[1][1] == turn and theBoard[2][2] == turn:  #diagonal down right
+        print(turn + " Wins!")
+        winner = True
+        
+    elif theBoard[0][2] == turn and theBoard[1][1] == turn and theBoard[2][0] == turn: #diagonal down left
+        print(turn + " Wins!") 
+        winner = True
+        
+    elif theBoard[0][0] == turn and theBoard[1][0] == turn and theBoard[2][0] == turn: #vertical left
+        print(turn + " Wins!")
+        winner = True
+        
+    elif theBoard[0][1] == turn and theBoard[1][1] == turn and theBoard[2][1] == turn: #vertical middle
+        print(turn + " Wins!")
+        winner = True
+        
+    elif theBoard[0][2] == turn and theBoard[1][2] == turn and theBoard[2][2] == turn: #vertical right
+        print(turn + " Wins!")
+        winner = True
+
+    return winner
+
+
+
+
+def main():                                       #begins with X
+
+    turn = 'X'
+    count = 0
+
+    
+
+    while count < 9:                                    #prints the board
+        
+        printBoard()
+        print("\n")
+
+        move = int(input("It's your go," + turn + " move to which spot? count is: " + str(count))) 
+        
+        checkLocation(move, turn)
+        winner = checkWinner(turn)
+        
+        if winner == True:                                    #if the person gets 3 in a row, they win
+            print("Congrats" + ' ' + turn + ' ' + "won\n\n\n")
+            printBoard()
+            break
+        
+        count = count + 1
+   
+        turn = 'O'
+             
+        if count == 9:                                #if 9 turns go, it must be a tie
+            print("tie!!!\n\n\n")
+            printBoard()
+            return
+        printBoard()
+        print("\n")
+        
+        move = int(input("It's your go," + turn + " move to which spot? count is: " + str(count)))
+        
+        checkLocation(move, turn)                                          
+        winner = checkWinner(turn)
+   
+        if winner == True:
+            print("Congrats" + ' ' + turn + ' ' + "won\n\n\n")                  #if the winner gets 3 in a row, they win
+            printBoard()
+            break     
+    
+        turn = 'X'
+        
+        count = count + 1
+        
+        print(count)
+        
+        '''
+        if count > 8:
+            print("Game Over.")                
+            print("It's a Tie.")
+            break
+        '''
+        
+if __name__ == "__main__":
+    main()
