@@ -1,0 +1,53 @@
+'''
+Created on Feb 23, 2023
+
+@author: rtirabassi23
+'''
+#Read Data
+#Create Dictionary
+#Load Dictionary; Sort Dictionary
+#Write dictionary CSV
+#Graph File
+import csv
+
+
+
+def main():
+    
+    
+
+    text = open("Macbeth.txt", "r")
+      
+    counts = dict() #creates dictionary
+      
+    for line in text:
+        line = line.strip()
+      
+        line = line.lower()
+      
+        words = line.split()            #splits the words
+                             
+        for word in words:
+            if word in counts:
+                counts[word] = counts[word] + 1
+            else:
+                counts[word] = 1
+      
+                                                     
+    sorted_dict = sorted(counts.items(), key=lambda x:x[1])         #putting the words in order
+    converted_dict = dict(sorted_dict)
+    
+    for key,value in converted_dict.items():            #removes all the unwanted words
+        if value > 30:
+            print(key + "," + str(value))        
+
+    with open('Macbeth.csv', 'w') as output:            #this puts the word into the Excel file
+        writer = csv.writer(output)
+        for key, value in converted_dict.items():
+            if value > 22:
+                writer.writerow([key, value])                   
+    
+   
+    
+if __name__ == "__main__":
+    main()
