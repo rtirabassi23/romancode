@@ -13,7 +13,7 @@ Created on Apr 4, 2023
 dictionary_addresses = dict()                   #creates variables
 lst = list()
 
-fhand = open("mbox-short.txt")
+fhand = open("mbox-short.txt")                  #opens text
 
 for line in fhand:
     words = line.split()                            #split the file up
@@ -30,7 +30,7 @@ for key, val in list(dictionary_addresses.items()):
 
 lst.sort(reverse=True)                  #sorts by highest value
 
-for key, val in lst[:1]:                #0nly displays the largest value
+for key, val in lst[:1]:                #only displays the largest value available
     print(key, val)
     
     
