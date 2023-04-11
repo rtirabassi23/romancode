@@ -1,0 +1,34 @@
+'''
+Created on Apr 10, 2023
+
+@author: rtirabassi23
+'''
+
+
+
+
+dictionary_hours = dict()           #creates variables
+lst = list()
+
+
+fhand = open("mbox-short.txt") #opens text
+
+for line in fhand:
+    words = line.split()
+    if len(words) < 2 or words[0] != 'From': #selecting lines with from
+        continue
+
+    col_pos = words[5].find(':')
+    hour = words[5][:col_pos]
+    if hour not in dictionary_hours:
+        dictionary_hours[hour] = 1      #first hour
+    else:
+        dictionary_hours[hour] += 1     #increases count or not for each hour
+
+for key, val in lst(dictionary_hours.items()):
+    lst.append((key, val))              #fills list with hour, count of dictionary
+
+lst.sort()                              #sorts by hour
+
+for key, val in lst:
+    print(key, val)
