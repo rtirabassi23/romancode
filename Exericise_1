@@ -1,0 +1,40 @@
+'''
+Created on Apr 4, 2023
+
+@author: rtirabassi23
+'''
+
+
+
+
+
+
+    
+dictionary_addresses = dict()                   #creates variables
+lst = list()
+
+fhand = open("mbox-short.txt")
+
+for line in fhand:
+    words = line.split()                            #split the file up
+    if len(words) < 2 or words[0] != 'From':
+        continue
+    else:
+        if words[1] not in dictionary_addresses:
+            dictionary_addresses[words[1]] = 1       #first entry
+        else:
+            dictionary_addresses[words[1]] += 1      #increases for each word
+
+for key, val in list(dictionary_addresses.items()):
+    lst.append((val, key))              #fills list with value and key of dictionary
+
+lst.sort(reverse=True)                  #sorts by highest value
+
+for key, val in lst[:1]:                #0nly displays the largest value
+    print(key, val)
+    
+    
+    
+    
+    
+    
