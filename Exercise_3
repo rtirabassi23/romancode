@@ -5,32 +5,32 @@ Created on Apr 11, 2023
 '''
 import string
 
-counts = 0                          #Creating variables
+counts = 0                          #creating variables
 dictionary_counts = dict()
 relative_lst = list()
 
-fhand = open("mbox-short.txt") #opens text
+fhand = open("mbox-short.txt")                  #opens text
 
 for line in fhand:
-    line = line.translate(str.maketrans('', '', string.digits))                 #Removes numbers and punctuation then sets all letters to lower case
+    line = line.translate(str.maketrans('', '', string.digits))                 #removes numbers and punctuation then sets all letters to lower case
     line = line.translate(str.maketrans('', '', string.punctuation))
     line = line.lower()
 
                                         
     words = line.split()
     for word in words:
-        for letter in word:                                         #Count each letter for relative frequencies
+        for letter in word:                                         #count each letter for relative frequencies
             counts += 1
             if letter not in dictionary_counts:
-                dictionary_counts[letter] = 1
+                dictionary_counts[letter] = 1                       #puts 1 for the first letter
             else:
-                dictionary_counts[letter] += 1
+                dictionary_counts[letter] += 1                      #adds one for every letter after that
 
 for key, val in list(dictionary_counts.items()):
-    relative_lst.append((val / counts, key))  #Computes the relative frequency
+    relative_lst.append((val / counts, key))  #computes the frequency
 
-relative_lst.sort(reverse=True)         #Sorts from highest relative frequency
+relative_lst.sort(reverse=True)         #sorts from highest frequency
 
-for key, val in relative_lst:
+for key, val in relative_lst:           #puts in order by frequency
     print(key, val)
     
